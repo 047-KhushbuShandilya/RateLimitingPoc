@@ -1,12 +1,13 @@
 spring:
-  redis:
-    host: localhost
-    port: 6379
+  data:
+    redis:
+      host: localhost
+      port: 6379
 
-resilience4j:
-  ratelimiter:
-    instances:
-      apiServiceLimiter:
-        limitForPeriod: 5          # 5 requests
-        limitRefreshPeriod: 10s    # per 10 seconds
-        timeoutDuration: 0         # no waiting
+ratelimit:
+  api:
+    limit: 5          # API-level requests allowed per minute
+    duration: 10      # in seconds
+  user:
+    limit: 3          # User-level requests allowed per minute
+    duration: 60      # in seconds
